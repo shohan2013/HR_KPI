@@ -1,0 +1,441 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url(../src/assets/css/font-wght.css);
+@import url(../src/assets/css/font-ital.css);
+@import url(../src/assets/css/material-icons.css);
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700"); */
+@import url(../src/assets/css/montserrat.css);
+
+html, body { height: 100%; }
+body { 
+    margin: 0;
+    font-family: 'Montserrat';
+ }
+
+ .mat-mdc-card.trinta-card .mat-mdc-card-content .mat-mdc-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #f5f7fa;
+}
+
+.mat-mdc-card.trinta-card .mat-mdc-card-content .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  /* border-radius: 10px; */
+  padding: 0 15px 0 60px;
+  border: 1px solid #f5f7fa;
+}
+
+ .mat-mdc-card-content
+{
+  border-radius: unset;
+}
+
+.mat-mdc-text-field-wrapper {
+  width: 100%;
+  z-index: 0;
+}
+
+.mat-mdc-text-field-wrapper {
+  height: auto;
+  flex: auto;
+  will-change: auto;
+}
+
+.mdc-text-field {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 0 16px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  will-change: opacity,transform,color;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  font-family: 'Montserrat';
+}
+
+.mat-expansion-panel-header {
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #E5E5E5;
+}
+
+.collapsed-panel {
+  background-color: red; /* Light gray when collapsed */
+}
+
+.wide-desc {
+  flex: 0 0 250px;
+}
+
+mat-expansion-panel {
+  border-radius: 0 !important;
+}
+
+mat-expansion-panel:not(:last-of-type) {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+mat-expansion-panel:not(:first-of-type) {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+
+.mat-primary {
+  --mat-full-pseudo-checkbox-selected-icon-color: var(--primaryColor);
+  --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--primaryColor);
+}
+
+    .example-full-width{
+        width: 100%;
+        height: 4em;
+    }
+    
+    .mat-mdc-card-content:last-child{
+      padding-bottom: 0px;
+    }
+
+    .statusapproved
+    {
+      display: inline-block;
+      padding: .25em .6em;
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: .75rem;
+      border-radius: 50rem !important;
+      color: #1f58c7;
+    background-color: rgba(31, 88, 199, .1);
+}
+    
+
+    .statuspending
+    {
+      display: inline-block;
+      padding: .25em .6em;
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: .75rem;
+      border-radius: 50rem !important;
+      color: #f4c238;
+    background-color: rgba(244,194,56,.1)
+    }
+
+    .statusrejected
+    {
+      display: inline-block;
+      padding: .25em .6em;
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: .75rem;
+      border-radius: 50rem !important;
+      color: #ed5555;
+      background-color: rgba(237,85,85,.1)
+    }
+
+    .statuscomplete
+    {
+      display: inline-block;
+      padding: .25em .6em;
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: .75rem;
+      border-radius: 50rem !important;
+      color: #28b765;
+      background-color: rgba(40,183,101,.1);
+    }
+
+    .statusreview
+    {
+
+      display: inline-block;
+      padding: .25em .6em;
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: .75rem;
+      border-radius: 50rem !important;
+      color: #12cf80;
+      background-color: rgba(40,183,101,.1);
+
+    }
+
+  
+
+    mat-label{
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Montserrat';
+    }
+    
+    .mat-card{
+        margin-bottom: 20px;
+        background-color: red;
+    }
+    
+    .mat-mdc-card
+    {
+        border-radius:unset
+    }
+
+    .mat-mdc-card-title, .mat-mdc-card-subtitle{
+        margin:10px;
+        font-weight:bold;
+        font-size:20px;
+        letter-spacing:3px;
+
+        font-family: 'Merriweather';
+        font-weight: 700;
+ 
+        line-height: 40px;
+        text-transform: none;
+        letter-spacing: -0.4px;
+        color: #363d40;
+    }
+    
+    .mat-divider {
+        border-top-color: rgba(0, 0, 0, 0.12);
+    }
+    
+    .mat-mdc-card-content{
+        margin-top: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        margin:2px;
+    }
+    
+    .mat-mdc-card-actions{
+        margin:2px;
+        border:1px solid rgba(0, 0, 0, 0.12);
+    }
+    
+    
+    
+    .mat-icon
+    {
+      color:red;
+    }
+    
+    .mat-mdc-button > .mat-icon, .mat-mdc-unelevated-button > .mat-icon, .mat-mdc-raised-button > .mat-icon, .mat-mdc-outlined-button > .mat-icon
+    {
+        color:white;
+    }
+    
+    .mat-mdc-button:not(:disabled)
+    {
+    color:white;
+    font-family: 'Merriweather';
+    }
+    
+    .mat-mdc-button
+    {
+        background-color:#00246b;
+        color:white;
+        font-family: 'Merriweather';
+    }
+    
+    .mat-mdc-button-touch-target{
+      font-family: 'Merriweather';
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .mat-mdc-unelevated-button > .mat-icon{
+        color:white;
+    }
+    
+    .mat-mdc-raised-button > .mat-icon{
+        color:white;
+    }
+    
+    span.mdc-button__label {
+      font-family: 'Montserrat';
+  }
+
+  .mat-mdc-cell[_ngcontent-ng-c229656074]{
+    font-family: 'Montserrat';
+  }
+
+  .mat-mdc-option .mdc-list-item__primary-text {
+    font-family: 'Montserrat';
+  }
+
+    .mat-mdc-snack-bar-container {
+      &.success-snackbar {
+        --mdc-snackbar-container-color: #059c51;
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+        font-family: 'Montserrat';
+      }
+    }
+    
+    .mat-mdc-snack-bar-container {
+      &.error-snackbar {
+        --mdc-snackbar-container-color: hsl(0, 96%, 30%);
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+      }
+    }
+
+    
+    .mat-mdc-dialog-surface mdc-dialog__surface{
+      border-radius: unset;
+    }
+  
+    .mat-mdc-paginator-page-size-label .mat-mdc-paginator-range-label{
+      font-family: 'Montserrat';
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: flex-start; /* Change to center or flex-end based on alignment need */
+    }
+
+
+      .red-snackbar {
+        background: #800000
+      }
+    
+      table-content{
+        margin:0px;
+      }
+    
+      .mat-mdc-unelevated-button:not(:disabled){
+        background-color:hsl(210, 81%, 42%);
+        font-family: 'Montserrat';
+      }
+    
+
+      .card-container-right{
+        width: 50%;
+        background-color: red;
+      }
+
+      .card-container-left{
+        width: 50%;
+      }
+
+      .left-align {
+        display: flex;
+        align-items: center; /* Vertically center content */
+        justify-content: flex-start; /* Align content to the left */
+        padding: 0 10px; /* Optional: Add some padding */
+      }
+
+      .mat-mdc-header-row {
+        background-color: rgb(77, 76, 76);
+        color: white;
+        border:1px solid whitesmoke;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: 'Montserrat';
+      }
+    
+      .mat-mdc-cell 
+      {
+        font-size: 11px;
+        border:2px solid whitesmoke;
+        font-family: 'Montserrat';
+      }
+    
+      .mat-mdc-paginator-container
+      {
+        background-color: rgb(238, 238, 238);
+      }
+    
+      .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+      }
+      
+      mat-table {
+       width: 1200px;
+       max-width: 1200px;
+       margin-bottom: 1rem;
+       display: table;
+       border-collapse: collapse;
+       margin: 0px;
+      }
+      
+      mat-row,
+      mat-header-row {
+        display: table-row;
+      }
+
+      mat-cell,
+      mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 5px;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+      }
+    
+      
+      .disabled-icon {
+        pointer-events: none;
+        opacity: 0.5; /* or any other styling to indicate it's disabled */
+    }
+    
+    .enabled-icon {
+        pointer-events: hand;
+    }
+    
+
+    .mat-mdc-dialog-surface.mdc-dialog__surface{
+      border-radius: unset;
+    }
+
+    
+
+    .mat-mdc-option, .mat-mdc-select-value
+    {
+      font-size: 12px;
+      font-family: 'Montserrat';
+    }
+
+    .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control
+    {
+      font-size: 12px;
+    }
+
+    .insidetable{
+      margin-top:5px;
+    }
+
+    .mdc-data-table__cell, .mdc-data-table__header-cell {
+      padding: 0 10px;
+  }
+
+  .mat-mdc-option, .mat-mdc-select-value {
+    font-size: 12px;
+    font-family: "Montserrat";
+    font-weight: bold;
+}

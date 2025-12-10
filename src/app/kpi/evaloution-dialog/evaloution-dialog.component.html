@@ -1,0 +1,193 @@
+
+<!-- <button mat-icon-button style="float: right;"><mat-icon>close</mat-icon> </button> -->
+<mat-card background-color: #f4f3f1;>
+    <mat-card-title>
+      <mat-card-title>Evaluation Details</mat-card-title>
+ 
+      </mat-card-title>
+      <mat-divider></mat-divider>
+    
+      <div class="table-responsive">
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+              <!-- Name Column -->
+              <!-- <ng-container matColumnDef="id" style="display: none;">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>  ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container> -->
+  
+              <ng-container matColumnDef="parameters">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef> Parameters </th>
+                <td mat-cell *matCellDef="let element" style="background-color: #F9F9F9;width: 270px;"> {{element.parametername}} </td>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="kpi">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Key Performance Indicator </th>
+                <td mat-cell *matCellDef="let element" style="width: 250px;"> {{element.kpidescription}} </td>
+              </ng-container>
+            
+              <!-- Symbol Column -->
+              <!-- <ng-container matColumnDef="targetperiodtypeid" style="display: none;">
+                <th mat-header-cell *matHeaderCellDef> Target Period Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.targetperiodtypeid}} </td>
+              </ng-container> -->
+  
+              <ng-container matColumnDef="targetperiodtype">
+                  <th mat-sort-header *matHeaderCellDef class="header name-column" mat-header-cell> Target Period Type </th>
+                  <td mat-cell *matCellDef="let element" style="width: 150px;"> {{element.targetperiodtype}} </td>
+                </ng-container>
+  
+            
+              <!-- <ng-container matColumnDef="targetperiodid">
+                  <th mat-header-cell *matHeaderCellDef> Target Period </th>
+                  <td mat-cell *matCellDef="let element"> {{element.targetperiodid}} </td>
+                </ng-container> -->
+  
+                <ng-container matColumnDef="targetperiod">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Target Period </th>
+                  <td mat-cell *matCellDef="let element" style="width: 200px;"> {{element.targetperiod}} </td>
+                </ng-container>
+  
+  
+                <ng-container matColumnDef="naration">
+                  <th mat-sort-header  *matHeaderCellDef mat-header-cell> Narration </th>
+                  <td mat-cell *matCellDef="let element" style="width: 500px;"> {{element.narration}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="weight">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="target">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Target </th>
+                  <td mat-cell *matCellDef="let element"> {{element.target}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="superviser">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Pending To </th>
+                  <td mat-cell *matCellDef="let element"> {{element.superviser}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="financialyear">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Financial Year </th>
+                  <td mat-cell *matCellDef="let element"> {{element.financialyear}} </td>
+                </ng-container>
+  
+  
+                <ng-container matColumnDef="kpidate">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.kpidate}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="achivement">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Achievement(%) </th>
+                  <td mat-cell *matCellDef="let element"> {{element.achivementpercent+'%'}}
+                    
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="activitydetails">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Activity Details </th>
+                  <td mat-cell *matCellDef="let element">  {{element.activitydetails}}
+                    <!-- <mat-form-field appearance="outline" class="example-full-width">
+                      <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'disabled-icon' : 'enabled-icon'" matIconPrefix style="color: black;">comments</mat-icon>
+                      <input [disabled]="element.docstatusid=='2' || element.docstatusid=='8' ? 'true' : 'false'" matInput placeholder="Something..." [(ngModel)]="element.activitydetails">
+                  </mat-form-field> -->
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="docstatus">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell> Status </th>
+                  <td mat-cell *matCellDef="let element;">
+                    <span *ngIf="element.docstatusid=='2'"  class="statuspending">{{element.docstatus}}</span>  
+                    <span *ngIf="element.docstatusid=='4'" class="statusapproved">{{element.docstatus}}</span>  
+                    <span *ngIf="element.docstatusid=='5'" class="statusrejected">{{element.docstatus}}</span>
+                    <span *ngIf="element.docstatusid=='7'" class="statuscomplete">{{element.docstatus}}</span>
+                    <span *ngIf="element.docstatusid=='8'" class="statusreview">{{element.docstatus}}</span>
+                </td>
+                </ng-container>
+  
+                <!-- <ng-container matColumnDef="action">
+                  <th mat-sort-header *matHeaderCellDef mat-header-cell style="width: 150px;"> Action </th>
+                  <td mat-cell *matCellDef="let element"> 
+                    <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'disabled-icon' : 'enabled-icon'"  style="cursor: pointer;color:rgb(0, 178, 147)" (click)="Update(element)">done_all</mat-icon>  
+                    <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'enabled-icon' : 'disabled-icon'"  style="cursor: pointer;color:#f4c238" (click)="Edit(element.id,element.targetperiodtypeid)">edit</mat-icon>  
+                    <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'enabled-icon' : 'disabled-icon'"  style="cursor: pointer;color:#db1f48" (click)="Delete(element.id)">delete</mat-icon></td>
+                </ng-container> -->
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+      </div>   
+  
+      <mat-card-footer>
+        <mat-paginator [pageSizeOptions]="[10,20, 30,40,50]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+    </mat-card-footer>
+
+
+    <mat-card background-color: #f4f3f1;>
+      <mat-card-title>Approval Status</mat-card-title>
+      <div class="table-responsive">
+        <table mat-table [dataSource]="statusSource" matSort class="mat-elevation-z8" >
+            <!-- Name Column -->
+            <ng-container matColumnDef="sl">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>  Sl No </th>
+                <td mat-cell *matCellDef="let element;let i = index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="initiator">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef> Initiator </th>
+              <td mat-cell *matCellDef="let element" style="background-color: #F9F9F9;width: 280px;"> {{element.initiator}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="approver">
+              <th mat-sort-header *matHeaderCellDef mat-header-cell> Action Taker </th>
+              <td mat-cell *matCellDef="let element" style="width: 250px;"> {{element.actiontacker}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <!-- <ng-container matColumnDef="targetperiodtypeid" style="display: none;">
+              <th mat-header-cell *matHeaderCellDef> Target Period Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.targetperiodtypeid}} </td>
+            </ng-container> -->
+
+            <ng-container matColumnDef="actiondate">
+                <th mat-sort-header *matHeaderCellDef class="header name-column" mat-header-cell> Action Date </th>
+                <td mat-cell *matCellDef="let element" style="width: 150px;"> {{element.actiondate}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="status">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Status </th>
+                <td mat-cell *matCellDef="let element;">
+                  <span *ngIf="element.code=='PEND'"  class="statuspending">{{element.status}}</span>  
+                  <span *ngIf="element.code=='APPR'" class="statusapproved">{{element.status}}</span>  
+                  <span *ngIf="element.code=='REJC'" class="statusrejected">{{element.status}}</span>
+                  <span *ngIf="element.code=='COMP'" class="statuscomplete">{{element.status}}</span>
+                  <span *ngIf="element.code=='REV'" class="statusreview">{{element.status}}</span>
+              </td>
+              </ng-container>
+
+              <!-- <ng-container matColumnDef="action">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell style="width: 150px;"> Action </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'disabled-icon' : 'enabled-icon'"  style="cursor: pointer;color:rgb(0, 178, 147)" (click)="Update(element)">done_all</mat-icon>  
+                  <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'enabled-icon' : 'disabled-icon'"  style="cursor: pointer;color:#f4c238" (click)="Edit(element.id,element.targetperiodtypeid)">edit</mat-icon>  
+                  <mat-icon [ngClass]="element.docstatusid=='2' || element.docstatusid=='8' ? 'enabled-icon' : 'disabled-icon'"  style="cursor: pointer;color:#db1f48" (click)="Delete(element.id)">delete</mat-icon></td>
+              </ng-container> -->
+
+            <tr mat-header-row *matHeaderRowDef="approverStatusColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: approverStatusColumns;"></tr>
+          </table>
+    </div>   
+    </mat-card>
+
+  <div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close (click)="closeup()" style="background-color: rgb(255, 166, 0);color:black">Close</button>
+  </div>
+  

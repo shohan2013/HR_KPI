@@ -1,0 +1,41 @@
+
+@if (this.loginservice.submitted) {
+  <mat-toolbar class="mat-elevation-z3">
+    <img  src="/assets/logo.png" height="40" width="150" alt="Example Image" />
+    <button style="margin-left: 50px;" mat-icon-button (click)="collapsed.set(!collapsed())">
+      <mat-icon>menu</mat-icon>
+    </button>
+  
+    <span class="example-spacer"></span>
+  
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>search</mat-icon>
+    </button>
+  
+    <button mat-icon-button>
+      <mat-icon class="icon">notifications</mat-icon>
+      <!-- <span class="badge">7</span> -->
+    </button>
+  
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="Logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+    <mat-sidenav-container class="mat-elevation-z3">
+      <mat-sidenav opened mode="side" [style.width]="sidenavWidth()" style="border-radius: unset;">
+        <app-sidenav [collapsed]="collapsed()" />
+      </mat-sidenav>
+      
+      <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+      
+}
+@else {
+  <router-outlet></router-outlet>
+}
+
+
+

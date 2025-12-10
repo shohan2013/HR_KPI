@@ -1,0 +1,43 @@
+<form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+ 
+<div class="container" style="margin-top: 60px;">
+   <div class="row" >
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-9">
+         <mat-card>
+            <div class="login-container">
+               <div style="text-align: center;"><br />
+                 <h5 style="font-weight: bold;margin-top: 10px;">AKIJBASHIR GROUP</h5>
+                 <P style="font-weight: bold;">KEY PERFORMANCE INDICATOR(KPI)</P>
+                 <!-- <span style="height: 0.1rem;border:0.1rem solid rgb(219, 216, 216);width: 350px;text-align: center;"></span> -->
+                
+                  
+                  <label for="password" style="font-weight: bold;">OTP :</label>
+                  <mat-form-field appearance="outline">
+                    <mat-label>OTP</mat-label>
+                    <mat-icon matListItemIcon matPrefix>vpn_key</mat-icon>
+                    <input style="width: 100%;" type="password" formControlName="Emppass" matInput placeholder="Enter Your Password" class="example-full-width" [ngClass]="{ 'is-invalid': submitted && f['Emppass'].errors }">
+                    <div *ngIf="submitted && f['Emppass'].errors" class="invalid-feedback">
+                       <div *ngIf="f['Emppass'].errors['required']">Password is Required</div>
+                     </div>
+                </mat-form-field>
+
+                
+
+                 <button mat-flat-button color="primary" style="width: 150px;font-family: 'Roboto';min-height: 40px;" type="submit">Verify OTP</button>
+             
+                 <p style="margin-top: 20px;">Don't have an account? <a href="https://erp.akijbashir.com/" target="_blank">Sign Up Now</a></p>
+               </div>
+              
+             </div>
+             <p style="font-size: 12px;text-align: right;margin-right: 5px ;">{{copyright}}</p>
+         </mat-card>
+
+      </div>
+      <div class="col-sm-2">
+
+      </div>
+   </div>
+</div>
+</form>

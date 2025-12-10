@@ -1,0 +1,209 @@
+
+<mat-card>
+    <mat-card-title>Key Performance Indicator (Approval)</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content><br>
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+            <mat-label>--Financial Year--</mat-label>
+            <mat-select (selectionChange)="GetKPIListSummary($event)" [(ngModel)]="fyear">
+                <option [value]="0">--Select--</option>
+                <mat-option *ngFor="let list of financialyearlist" [value]="list.id">
+                        {{list.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+            <!-- <button (click)="OpenEvolutionModal()" type="button" style="background-color: rgb(59, 64, 69);" mat-flat-button><mat-icon>check_circle_outline</mat-icon> Pending For Evolution</button>&nbsp; -->
+          </div>
+            <!-- <div class="col-sm-4">
+              <mat-form-field appearance="outline" class="example-full-width">
+                <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+              <mat-select (selectionChange)="GetKPIListSummary($event)" [(ngModel)]="status">
+                  <option [value]="0">--Select--</option>
+                  <mat-option *ngFor="let list of doclist" [value]="list.id">
+                          {{list.name}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+            </div> -->
+            <div class="col-sm-6">
+                <mat-form-field appearance="outline" class="example-full-width">
+                  <mat-icon matIconPrefix style="color: black;">search</mat-icon>
+                  <mat-label>Search</mat-label>
+                    <input (keyup)="FilterChange($event)" matInput placeholder="Search...">
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+
+   <br />
+
+  <mat-accordion >
+  
+  <mat-expansion-panel  *ngFor="let panel of kpilistsummary ; let i = index" (opened)="check(panel)" (closed)="panelOpenState.set(false)" [expanded]="panelExpandedIndex === i" (opened)="panelExpandedIndex = i" (closed)="panelExpandedIndex = null">
+    <mat-expansion-panel-header>
+      <!-- <mat-panel-title> Name </mat-panel-title>
+      <mat-panel-title> Department </mat-panel-title>
+      <mat-panel-title>Designation</mat-panel-title>
+      <mat-panel-title> Financial Year </mat-panel-title> -->
+      <!-- <mat-panel-title> Approve </mat-panel-title>
+      <mat-panel-title> Pending </mat-panel-title>
+      <mat-panel-title> Reject </mat-panel-title>
+      <mat-panel-title> Review </mat-panel-title> -->
+
+      <mat-panel-description>{{panel.id}}</mat-panel-description>
+      <mat-panel-description class="wide-desc">{{panel.empname}}</mat-panel-description>
+      <mat-panel-description>{{panel.department}}</mat-panel-description>
+      <mat-panel-description>{{panel.designation}}</mat-panel-description>
+      <!-- <mat-panel-description>{{panel.financialyear}}</mat-panel-description> -->
+
+
+      <mat-panel-description >Approved<span class="statusapproved">{{panel.approved}}</span></mat-panel-description>
+      <mat-panel-description >Pending<span class="statuspending">{{panel.pending}}</span></mat-panel-description>
+      <mat-panel-description >Rejected<span class="statusrejected">{{panel.rejected}}</span></mat-panel-description>
+      <mat-panel-description >Review<span class="statuspending">{{panel.review}}</span></mat-panel-description>
+
+      <!-- <mat-panel-description>{{panel.approve}}</mat-panel-description>
+      <mat-panel-description>{{panel.pending}}</mat-panel-description>
+      <mat-panel-description>{{panel.reject}}</mat-panel-description>
+      <mat-panel-description>{{panel.review}}</mat-panel-description> -->
+
+    </mat-expansion-panel-header>
+
+     <div class="table-responsive">
+      <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+          
+            <!-- <ng-container matColumnDef="name">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>  Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="department">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>  Department</th>
+                <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+            </ng-container> -->
+
+
+            <ng-container matColumnDef="unit">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>  Unit </th>
+                <td mat-cell *matCellDef="let element"> {{element.unit}} </td>
+            </ng-container>
+
+            
+
+            <ng-container matColumnDef="paramname">
+              <th mat-sort-header *matHeaderCellDef mat-header-cell> Parameter </th>
+              <td mat-cell *matCellDef="let element"> {{element.paramname}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="kpidescription">
+                <th mat-header-cell *matHeaderCellDef> KPI Description</th>
+                <td mat-cell *matCellDef="let element"> {{element.kpidescription}} </td>
+              </ng-container> 
+
+              
+  
+            <ng-container matColumnDef="targettype">
+              <th mat-sort-header *matHeaderCellDef mat-header-cell> Target Period Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.targettype}} </td>
+            </ng-container>
+          
+     
+
+         
+            <ng-container matColumnDef="targetperiod">
+                <th mat-sort-header *matHeaderCellDef class="header name-column" mat-header-cell> Target Period </th>
+                <td mat-cell *matCellDef="let element"> {{element.targetperiod}} </td>
+              </ng-container>
+
+               <ng-container matColumnDef="narration">
+                <th mat-sort-header  *matHeaderCellDef mat-header-cell> Narration </th>
+                <td mat-cell *matCellDef="let element"> {{element.narration}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="weight">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Weight </th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="target">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Target </th>
+                <td mat-cell *matCellDef="let element"> {{element.target}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="supervisor">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Pending To </th>
+                <td mat-cell *matCellDef="let element"> {{element.supervisor}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="descriptions">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Description </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <mat-form-field appearance="outline" style="margin-top: 5px;">
+                    <mat-icon matIconPrefix style="color: black;">edit_note</mat-icon>
+                  <input matInput placeholder="Remark" [(ngModel)]="element.descriptions">
+                  </mat-form-field>
+            </td>
+              </ng-container>
+
+              <ng-container matColumnDef="approvedate">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Approved Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.approvedate}} </td>
+              </ng-container>
+
+              <ng-container style="display: none;" matColumnDef="docstatusid">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.docstatusid}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="docname">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Status </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <span *ngIf="element.docstatusid=='2'" class="statuspending">{{element.docname}}</span>  
+                  <span *ngIf="element.docstatusid=='4'" class="statusapproved">{{element.docname}}</span>  
+                  <span *ngIf="element.docstatusid=='5'" class="statusrejected">{{element.docname}}</span>
+                  <span *ngIf="element.docstatusid=='7'" class="statuscomplete">{{element.docname}}</span>
+                  <span *ngIf="element.docstatusid=='8'" class="statuspending">{{element.docname}}</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-sort-header *matHeaderCellDef mat-header-cell> Action </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <div class="action-buttons">
+                    <button [disabled]="element.docstatusid=='2' || element.docstatusid=='8' ? false : true" type="button" mat-mini-fab style="background-color: #e8ebf0;border-radius: 100%;float: right;margin-left: 5px;" (click)="Reject(element.financialyear,element.initiatorid,element.id, element.descriptions)"><mat-icon style="color: red;">highlight_off</mat-icon></button>&nbsp;
+                    <button [disabled]="element.docstatusid=='2' || element.docstatusid=='8' ? false : true" type="button" mat-mini-fab style="background-color: #0a66c2;border-radius: 100%;float: right;margin-left: 5px;" (click)="Review(element.financialyear,element.initiatorid,element.id, element.descriptions)"><mat-icon style="color: white;">wifi_protected_setup</mat-icon></button>
+                    <button [disabled]="element.docstatusid=='2' || element.docstatusid=='8' ? false : true" type="button" mat-mini-fab style="background-color: rgb(97, 95, 95);border-radius: 100%;float: right;margin-left: 5px;" (click)="Approve(element.financialyear,element.initiatorid,element.id, element.descriptions)"><mat-icon style="color: white;">done_all</mat-icon></button> 
+  
+                  </div>
+                </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+          <mat-card-footer>
+  <mat-paginator 
+  [pageSize]="100"
+  [pageSizeOptions]="[10, 20, 30,40,50,100]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+    </mat-card-footer>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+    
+    <mat-card-footer>
+
+    </mat-card-footer>
+
+</mat-card>
+

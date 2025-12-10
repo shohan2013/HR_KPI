@@ -1,0 +1,105 @@
+<form [formGroup]="MasterForm" (ngSubmit)="Update()">
+    <mat-card>
+        <mat-card-title style="background-color: rgb(238, 238, 238);font-size: 20px;padding: 8px;">Key Performance Indicator (Edit) </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content><br>
+            <div class="row">
+                <div class="col-sm-4" style="display: none;">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <input formControlName="ID" matInput placeholder="EX-Upgrade the HR Module of ABG ERP">
+                        </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                    <!-- <mat-label>Parameters</mat-label> -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Parameters</mat-label>
+                        <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                        <mat-select formControlName="ParametersID" #parameterid>
+                            <mat-option *ngFor="let list of paramlist" [value]="list.id">
+                                    {{list.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            
+                <div class="col-sm-4">
+                    <!-- <mat-label>Key Performance Indicator</mat-label> -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Key Performance Indicator</mat-label>
+                        <mat-icon matIconPrefix style="color: black;">edit</mat-icon>
+                        <textarea formControlName="KPIDescription" cols="10" rows="1" matInput placeholder="EX-Upgrade the HR Module of ABG ERP"></textarea>
+                        <!-- <input formControlName="KPIDescription" matInput placeholder="EX-Upgrade the HR Module of ABG ERP"> -->
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-sm-2">
+                    <!-- <mat-label>Target Period Type</mat-label> -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Period Type</mat-label>
+                        <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                        <mat-select (selectionChange)="GetPeriodCategoryDetails($event)" formControlName="TargetPeriodTypeID" #targetperiodtypeid>
+                            <mat-option *ngFor="let list of periodcategorylist" [value]="list.id">
+                                    {{list.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-2">
+                    <!-- <mat-label>Target Period</mat-label> -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Target Period</mat-label>
+                        <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                        <mat-select formControlName="TargetPeriodID" #targetperiod>
+                            <mat-option *ngFor="let list of periodcategorydetailslist" [value]="list.id">
+                                    {{list.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- <mat-label>Weight</mat-label> -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-icon matIconPrefix style="color: black;">functions</mat-icon>
+                        <mat-label>Weight</mat-label>
+                        <!-- <input formControlName="Weight" matInput placeholder="Ex. 10"> -->
+                        <input formControlName="Weight" [(ngModel)]="checkrange" matInput placeholder="Ex. 10" #weight (keyup)="CheckWeight($event)" (keypress)="numberOnly($event)">
+                    </mat-form-field>
+                    <span style="color:#28b765;font-weight: bold;font-size: 11px;">Previous Weight : {{previous}}</span> || <span style="color:rgb(104, 14, 221);font-weight: bold;font-size: 11px;">Remaining Weight : {{remaining}}</span>
+                </div>
+
+                  <div class="col-sm-4">
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-icon matIconPrefix style="color: black;">comment</mat-icon>
+                    <mat-label>Target</mat-label>
+                    <textarea formControlName="Target" cols="10" rows="1" matInput placeholder="Target" #target></textarea>
+                </mat-form-field>
+            </div>
+
+
+                <div class="col-sm-4">
+                    <!-- <mat-label>Narration</mat-label> -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-icon matIconPrefix style="color: black;">comment</mat-icon>
+                        <mat-label>Narration</mat-label>
+                        <textarea formControlName="Narration"  cols="10" rows="1" matInput placeholder="Implement the software"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+    
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button type="submit" style="background-color:rgb(59, 64, 69);" mat-flat-button><mat-icon>edit_square</mat-icon> Update</button> &nbsp;
+            <button mat-raised-button mat-dialog-close (click)="closeup()" style="background-color: rgb(255, 166, 0);color:black">Close</button>
+            <!-- <button mat-button type="button" routerLink="/kpi-list" style="background-color:rgb(238, 238, 238);color:black"><mat-icon style="color: black;">keyboard_backspace</mat-icon>Back To List</button> -->
+        </mat-card-actions>
+    </mat-card>
+
+    <div mat-dialog-actions>
+        <!-- <button mat-raised-button mat-dialog-close (click)="closeup()" style="background-color: rgb(255, 166, 0);color:black">Close</button> -->
+    </div>
+    </form>

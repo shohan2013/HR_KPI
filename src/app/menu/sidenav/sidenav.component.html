@@ -1,0 +1,17 @@
+<div class="sidenav-header">
+    <img [width]="profilePicSize()" [height]="profilePicSize()" src="/assets/logo.jpg" alt="Example Image" />
+
+    <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
+        <h2>{{lblDepartment}}</h2>
+        <p>{{lblName}}</p>
+    </div>
+    <mat-divider style="margin-top: 10px;"></mat-divider>
+</div>
+ 
+<mat-nav-list>
+    @for (item of menu; track item.menuID) {
+        <app-submenu [item]="item" [collapsed]="sideNavCollapsed()" />
+    }
+</mat-nav-list> 
+<mat-divider style="margin-top: 10px;"></mat-divider>
+<!-- [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-Outlined'" -->

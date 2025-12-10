@@ -1,0 +1,190 @@
+<form [formGroup]="MasterForm" (ngSubmit)="Save()">
+<mat-card>
+    <mat-card-title style="background-color: rgb(238, 238, 238);font-size: 20px;padding: 8px;">Key Performance Indicator (Creation)</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>   <br />
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- <mat-label>Parameters</mat-label> -->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Parameters</mat-label>
+                    <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                    <mat-select formControlName="Parameters" #parameterid [ngClass]="{ 'is-invalid': submitted && f['Parameters'].errors }">
+                        <mat-option *ngFor="let list of paramlist" [value]="list.id">
+                                {{list.name}}
+                        </mat-option>
+                    </mat-select>
+                    <div *ngIf="submitted && f['Parameters'].errors" class="invalid-feedback">
+                        <div *ngIf="f['Parameters'].errors['required']">Password is Required</div>
+                    </div>
+                </mat-form-field>
+            </div>
+        
+            <div class="col-sm-4">
+                <!-- <mat-label>Key Performance Indicator</mat-label> -->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-icon matIconPrefix style="color: black;">edit</mat-icon>
+                    <mat-label>Key Performance Indicator</mat-label>
+                    <textarea formControlName="KPI" cols="10" rows="1" matInput placeholder="EX-Upgrade the HR Module of ABG ERP" #kpi></textarea>
+                    <!-- <input formControlName="KPI" matInput placeholder="EX-Upgrade the HR Module of ABG ERP" [ngClass]="{ 'is-invalid': submitted && f['Parameters'].errors }" #kpi> -->
+                    <div *ngIf="submitted && f['KPI'].errors" class="invalid-feedback">
+                        <div *ngIf="f['KPI'].errors['required']">Password is Required</div>
+                        </div>
+                </mat-form-field>
+            </div>
+
+
+            <div class="col-sm-2">
+                <!-- <mat-label>Target Period Type</mat-label> -->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Target Period Type</mat-label>
+                    <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                    <mat-select (selectionChange)="GetPeriodCategoryDetails($event)" formControlName="TargetPeriodTypeID" #targetperiodtypeid>
+                        <mat-option *ngFor="let list of periodcategorylist" [value]="list.id">
+                                {{list.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-sm-2">
+                <!-- <mat-label>Target Period</mat-label> -->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Target Period</mat-label>
+                    <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                    <mat-select formControlName="TargetPeriodID" #targetperiod>
+                        <option [value]="0">--Select--</option>
+                        <mat-option *ngFor="let list of periodcategorydetailslist" [value]="list.id">
+                                {{list.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        
+        <div class="row">  
+            <div class="col-sm-4">
+                <!-- <mat-label>Weight</mat-label> -->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-icon matIconPrefix style="color: black;">functions</mat-icon>
+                    <mat-label>Weight</mat-label>
+                    <input formControlName="Weight" [(ngModel)]="checkrange" matInput placeholder="Ex. 10" #weight (keypress)="numberOnly($event)" (keyup)="CheckWeight($event)">
+                </mat-form-field>
+                <span style="color:#28b765;font-weight: bold;font-size: 11px;">Previous Weight : {{previous}}</span> || <span style="color:rgb(104, 14, 221);font-weight: bold;font-size: 11px;">Remaining Weight : {{remaining}}</span>
+            </div>
+
+             
+             <div class="col-sm-4">
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-icon matIconPrefix style="color: black;">comment</mat-icon>
+                    <mat-label>Target</mat-label>
+                    <textarea formControlName="Target" cols="10" rows="1" matInput placeholder="Target" #target></textarea>
+                </mat-form-field>
+            </div>
+
+
+            <div class="col-sm-4">
+                <!-- <mat-label>Narration</mat-label> -->
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-icon matIconPrefix style="color: black;">comment</mat-icon>
+                    <mat-label>Narration</mat-label>
+                    <textarea formControlName="Narration" cols="10" rows="1" matInput placeholder="Implement the software" #narration></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="button" mat-flat-button (click)="Add(parameterid.value,kpi.value,targetperiodtypeid.value,targetperiod.value,narration.value,weight.value,target.value)"><mat-icon>add</mat-icon> Add</button> &nbsp;
+        <button mat-button type="button" style="background-color: rgb(0, 197, 164)" (click)="Save()"><mat-icon>check_circle</mat-icon>Save</button>&nbsp;
+        <button mat-raised-button mat-dialog-close (click)="closeup()" style="background-color: rgb(255, 166, 0);color:black">Close</button>
+        <!-- <button mat-button type="button" routerLink="/kpi-list" style="background-color:rgb(238, 238, 238);color:black"><mat-icon style="color:black">keyboard_backspace</mat-icon>Back To List</button> -->
+    </mat-card-actions>
+</mat-card>
+
+
+<br/>
+<mat-card>
+    <mat-card-title style="background-color: rgb(238, 238, 238);font-size: 20px;padding: 8px;">
+        Add Item 
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+            <!-- Name Column -->
+            <!-- <ng-container matColumnDef="parametersid">
+                <th mat-header-cell *matHeaderCellDef> Parameters ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.parametersid}} </td>
+              </ng-container> -->
+
+            <ng-container matColumnDef="parameters">
+              <th *matHeaderCellDef mat-header-cell> Parameters </th>
+              <td mat-cell *matCellDef="let element" style="background-color: #F9F9F9;width: 280px;"> {{element.parameters}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="kpi">
+              <th *matHeaderCellDef mat-header-cell> Key Performance Indicator </th>
+              <td mat-cell *matCellDef="let element"> {{element.kpidescription}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <!-- <ng-container matColumnDef="targetperiodtypeid" style="display: none;">
+              <th mat-header-cell *matHeaderCellDef> Target Period Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.targetperiodtypeid}} </td>
+            </ng-container> -->
+
+            <ng-container matColumnDef="targetperiodtype">
+                <th *matHeaderCellDef class="header name-column" mat-header-cell> Target Period Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.targetperiodtype}} </td>
+              </ng-container>
+
+          
+            <!-- <ng-container matColumnDef="targetperiodid">
+                <th mat-header-cell *matHeaderCellDef> Target Period </th>
+                <td mat-cell *matCellDef="let element"> {{element.targetperiodid}} </td>
+              </ng-container> -->
+
+              <ng-container matColumnDef="targetperiod">
+                <th *matHeaderCellDef mat-header-cell> Target Period </th>
+                <td mat-cell *matCellDef="let element"> {{element.targetperiod}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="naration">
+                <th  *matHeaderCellDef mat-header-cell> Narration </th>
+                <td mat-cell *matCellDef="let element"> {{element.narration}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="weight">
+                <th  *matHeaderCellDef mat-header-cell> Weight </th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              </ng-container>
+
+               <ng-container matColumnDef="target">
+                <th  *matHeaderCellDef mat-header-cell> Target </th>
+                <td mat-cell *matCellDef="let element"> {{element.target}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th *matHeaderCellDef mat-header-cell> Action </th>
+                
+                <td mat-cell *matCellDef="let i=index"> 
+                    <!-- <mat-icon style="cursor: pointer" (click)="Remove(i)">delete</mat-icon> -->
+                    <button type="button" mat-mini-fab style="background-color: #e8ebf0;border-radius: 100%;float: right;margin-left: 5px;" (click)="Remove(i)"><mat-icon style="color: red;">delete</mat-icon></button>&nbsp;
+
+                </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>     
+</mat-card>
+
+<div mat-dialog-actions>
+    <!-- <button mat-raised-button mat-dialog-close (click)="closeup()" style="background-color: rgb(255, 166, 0);color:black">Close</button> -->
+</div>
+
+</form>
