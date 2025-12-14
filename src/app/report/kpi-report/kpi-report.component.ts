@@ -16,6 +16,10 @@ export class KpiReportComponent {
   unitid:number=0;
   fyearid:number=0;
 
+    subunitlist:any;
+    jobstationlist:any;
+    clusterlist:any;
+
   constructor(private cs: CommonService,private service : KpiApprovalService,private snackbar:SnackbarService)
   {
     
@@ -33,7 +37,32 @@ export class KpiReportComponent {
       })  
     }
   
+    GetCluster()
+    {
+      this.cs.GetCluster().subscribe((data: any[])=>{
+        this.clusterlist = data;
+      })  
+    }
   
+    GetSubUnit(e:any)
+    {
+
+      this.cs.GetSubunit(e.value).subscribe((data: any[])=>{
+        this.subunitlist = data;
+      })  
+
+      this.GetJobStation(e.value,"");
+    }
+  
+
+    GetJobStation(unitid:number,prefix:string)
+    {
+      this.cs.GetJobstationList(unitid,prefix).subscribe((data: any[])=>{
+        this.jobstationlist = data;
+      })  
+    }
+  
+
   GetFinancialYear()
   {
     this.service.GetFinancialYear().subscribe((data: any[])=>{

@@ -14,4 +14,18 @@ export class CommonService {
      GetUnitlist() : Observable<any[]>{
         return this.http.get<any[]>(this.con.apiurl+"/AllReport/"+localStorage.getItem("Enroll"));
       }
+
+      GetJobstationList(unitid:number,prefix:string) : Observable<any[]>{
+        prefix="test"
+        return this.http.get<any[]>(this.con.apiurl+"/AllReport/GetJobStation?unitid="+unitid+"&prefix="+prefix);
+      }
+
+      GetSubunit(unitid:number) : Observable<any[]>{
+        alert(unitid);
+        return this.http.get<any[]>(this.con.apiurl+"/AllReport/GetSubUnit?unitid="+unitid);
+      }
+
+      GetCluster() : Observable<any[]>{
+        return this.http.get<any[]>(this.con.apiurl+"/AllReport/"+localStorage.getItem("Enroll"));
+      }
 }
