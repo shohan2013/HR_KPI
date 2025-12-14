@@ -8,33 +8,82 @@
            <mat-form-field appearance="outline" class="example-full-width">
               <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
             <mat-label>--Select Unit--</mat-label>
-            <mat-select #unitid>
+            <mat-select #unitid  (selectionChange)="GetSubUnit($event)">
                 <option [value]="0">--Select--</option>
                 <mat-option *ngFor="let list of unitlist" [value]="list.id">
                         {{list.name}}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
-          </div>
+           </mat-form-field>
+ </div>
 
-
-          <div class="col-sm-4">
-            <mat-form-field appearance="outline" class="example-full-width">
+        <div class="col-sm-4">
+           <mat-form-field appearance="outline" class="example-full-width">
               <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
-            <mat-label>--Select Year--</mat-label>
-            <mat-select #fyearid>
+            <mat-label>--Select Sub-Unit--</mat-label>
+            <mat-select #unitid>
                 <option [value]="0">--Select--</option>
-                <mat-option *ngFor="let list of financialyearlist" [value]="list.id">
+                <mat-option *ngFor="let list of subunitlist" [value]="list.id">
                         {{list.name}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
+</div>
+
+         <div class="col-sm-4">
+           <mat-form-field appearance="outline" class="example-full-width">
+              <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+            <mat-label>--Select Job Station--</mat-label>
+            <mat-select #unitid>
+                <option [value]="0">--Select--</option>
+                <mat-option *ngFor="let list of jobstationlist" [value]="list.id">
+                        {{list.name}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
           </div>
 
-          <div class="col-sm-4">
+
+          </div>
+
+          <div  class="row">
+
+                <div class="col-sm-4">
+                      <mat-form-field appearance="outline" class="example-full-width">
+                          <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                        <mat-label>--Select Cluster--</mat-label>
+                        <mat-select #unitid>
+                            <option [value]="0">--Select--</option>
+                            <mat-option *ngFor="let list of jobstationlist" [value]="list.id">
+                                    {{list.name}}
+                            </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+
+              <div class="col-sm-4">
+                  <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-icon matIconPrefix style="color: black;">menu</mat-icon>
+                  <mat-label>--Select Year--</mat-label>
+                  <mat-select #fyearid>
+                      <option [value]="0">--Select--</option>
+                      <mat-option *ngFor="let list of financialyearlist" [value]="list.id">
+                              {{list.name}}
+                      </mat-option>
+                  </mat-select>
+                  </mat-form-field>
+              </div>
+
+               <div class="col-sm-4">
                 <button style="margin-top: 10px;" type="button" mat-flat-button (click)="Report(unitid.value,fyearid.value)"> Report</button> &nbsp;
           </div>
-        </div>
+          </div>
+         
+        
+
+         
+
+
       </mat-card-content>
      
     <mat-divider></mat-divider>
